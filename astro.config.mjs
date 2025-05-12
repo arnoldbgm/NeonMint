@@ -9,6 +9,10 @@ import netlify from '@astrojs/netlify';
 export default defineConfig({
   site: "https://neonmint.efeele.dev",
 
+  experimental: {
+    session: true, // Habilitar la funcionalidad experimental de sesiones
+  },
+
   integrations: [preact(), icon(), sitemap({
     filter: (page) =>
       !page.includes("/blog/tags") &&
