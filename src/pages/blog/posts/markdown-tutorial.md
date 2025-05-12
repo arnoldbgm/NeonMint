@@ -1,164 +1,147 @@
----
-layout: /src/layouts/MarkdownPostLayout.astro
-title: The Complete Markdown Guide
-author: Fernando López
-description: "A comprehensive guide to Markdown syntax, covering everything from basic formatting to advanced features. Learn how to create headers, lists, emphasis, and more with this essential markup language for content creation."
-image:
-  url: "/images/posts/markdown.webp"
-  alt: "Example of animated borders with Tailwind CSS in a dark design, featuring a vibrant color gradient background."
-pubDate: 2025-04-05
-tags:
-  [
-    "documentation", "tutorial", "web-development", "content-creation", "writing"
-  ]
-languages: ["markdown", "html", "css"]
+## 🧪 Laboratorio 09: DOM como API de Objetos
+
+### Proyecto: ✨ MiniBlog Live – Editor visual con galería de imágenes
+
 ---
 
-Markdown is a lightweight markup language that you can use to add formatting elements to plaintext text documents. Created by John Gruber in 2004, Markdown is now one of the world's most popular markup languages.
+### 🎯 Objetivos de Aprendizaje
 
-## Basic Syntax
+* Manipular el DOM como un sistema de objetos mediante JavaScript.
+* Aplicar métodos como `querySelector`, `querySelectorAll` y `.appendChild()` para generar interfaces dinámicas.
+* Utilizar estructuras de datos (arrays de objetos) para construir componentes visuales.
+* Estilizar elementos generados dinámicamente con clases CSS y manipulación de propiedades del DOM.
 
-### Headers
-
-```markdown
-# H1
-## H2
-### H3
-#### H4
-##### H5
-###### H6
-```
-
-### Emphasis
-
-```markdown
-*Italic text* or _Italic text_
-**Bold text** or __Bold text__
-***Bold and italic*** or ___Bold and italic___
-~~Strikethrough~~
-```
-
-### Lists
-
-#### Unordered Lists
-```markdown
-- First item
-- Second item
-- Third item
-  - Indented item
-  - Another indented item
-```
-
-#### Ordered Lists
-```markdown
-1. First item
-2. Second item
-3. Third item
-   1. Indented item
-   2. Another indented item
-```
-
-### Links and Images
-
-```markdown
-[Link text](https://www.example.com)
-![Alt text](image.jpg)
-```
-
-### Code
-
-#### Inline Code
-```markdown
-Use `code` in your text
-```
-
-#### Code Blocks
-````markdown
-```javascript
-const hello = "world";
-console.log(hello);
-```
-````
-
-### Blockquotes
-
-```markdown
-> This is a blockquote
-> 
-> It can span multiple lines
-```
-
-### Horizontal Rules
-
-```markdown
 ---
-***
-___
+
+### 🔑 Conceptos Clave
+
+* **DOM como Árbol de Objetos:** Cada etiqueta HTML es un nodo que puede crearse, modificarse o eliminarse desde JS.
+* **Selección dinámica de nodos:** Uso eficiente de `querySelectorAll()` y manipulación de múltiples nodos.
+* **Creación dinámica de elementos:** `createElement`, `appendChild`, `.classList.add()` para construir interfaces desde cero.
+* **Estilos aplicados desde JS:** Aplicación de clases y estilos directamente en los nodos del DOM.
+
+---
+
+### ⚙️ Setup Inicial
+
+📁 **Repositorio:**
+
+1. Crea un repositorio llamado `miniblog-live`.
+2. Clónalo localmente y trabaja en la rama `main`.
+
+📁 **Estructura mínima:**
+
+```
+miniblog-live/
+├── index.html
+├── css/
+│   └── styles.css
+├── js/
+│   └── app.js
+└── README.md
 ```
 
-## Extended Syntax
+💡 **Recomendación:** Usa [TailwindCSS](https://tailwindcss.com/) para lograr estilos elegantes con rapidez.
 
-### Tables
+📄 **Contenido base de HTML:**
+Incluye una estructura con `header`, `main` (para la galería) y `footer`.
 
-```markdown
-| Syntax | Description |
-| ----------- | ----------- |
-| Header | Title |
-| Paragraph | Text |
+---
+
+### 📋 Historias de Usuario
+
+---
+
+#### **HU1: Barra de herramientas con botón “Cargar Galería”**
+
+**“Como usuario, quiero ver un botón fijo que me permita cargar la galería de imágenes en cualquier momento, desde cualquier dispositivo.”**
+
+✅ Criterios de aceptación:
+
+* Barra de herramientas fija (arriba en desktop, abajo en móvil).
+* Botón visible llamado “Cargar Galería”.
+* Editor (futuro) y galería visibles a la vez.
+* Responsive en todo momento.
+
+🕒 **Checkpoint 1 (30 min):**
+
+* HTML con botón funcional.
+* Estructura clara con `#editor` y `#galeria`.
+
+---
+
+#### **HU2: Galería dinámica en formato Card**
+
+**“Como usuario, quiero ver una galería visual con imágenes en tarjetas elegantes, generadas automáticamente desde un arreglo de datos.”**
+
+✅ Criterios de aceptación:
+
+* Mínimo 3 imágenes precargadas desde un arreglo JS.
+* Cada imagen debe mostrarse en una tarjeta (`card`) que incluya:
+
+  * Imagen centrada.
+  * Título visible.
+  * (Opcional) botón "Ver más" o similar.
+* Las tarjetas se crean dinámicamente usando el DOM (`createElement`, `appendChild`, etc.).
+* El contenedor de la galería (`#galeria`) se actualiza cada vez que se hace clic en el botón.
+
+📦 Ejemplo de arreglo:
+
+```js
+const galeria = [
+  { titulo: "Montaña", url: "img/montaña.jpg" },
+  { titulo: "Ciudad", url: "img/ciudad.jpg" },
+  { titulo: "Selva", url: "img/selva.jpg" }
+];
 ```
 
-### Task Lists
+🕒 **Checkpoint 2 (60 min):**
 
-```markdown
-- [x] Write the press release
-- [ ] Update the website
-- [ ] Contact the media
-```
+* Cards generadas dinámicamente.
+* Galería visible y bien distribuida.
+* Las imágenes no están “hardcodeadas” en el HTML.
 
-### Footnotes
+---
 
-```markdown
-Here's a sentence with a footnote. [^1]
+#### **HU3: Estilo dinámico con botón “Contrastar”**
 
-[^1]: This is the footnote.
-```
+**“Como usuario, quiero aplicar un estilo especial (contraste de color y tamaño) a las tarjetas con solo presionar un botón.”**
 
-### Emoji
+✅ Criterios de aceptación:
 
-```markdown
-:smile: :heart: :rocket:
-```
+* Agregar un botón "Contrastar Tarjetas".
+* Al hacer clic, todas las tarjetas deben cambiar su estilo visual (ej. fondo oscuro, texto blanco, tamaño mayor).
+* Al volver a hacer clic, las tarjetas deben volver a su estilo original.
+* Usar `querySelectorAll()` para seleccionar todas las tarjetas.
+* Manipular clases o propiedades `.style` para lograr el efecto.
 
-### Highlight
+🕒 **Checkpoint 3 (90 min):**
 
-```markdown
-==highlighted text==
-```
+* Botón “Contrastar” funciona como toggle.
+* Cambios se aplican de inmediato.
+* Todo debe hacerse con JavaScript, sin recargar la página.
 
-## Best Practices
+---
 
-1. **Keep it Simple**: Markdown is meant to be easy to read and write.
-2. **Use Consistent Formatting**: Stick to one style for similar elements.
-3. **Add Whitespace**: Use blank lines to separate different sections.
-4. **Use Headers Properly**: Start with H1 and use lower levels for subsections.
-5. **Escape Special Characters**: Use backslash to escape special characters.
+### 🌟 Logros Adicionales (Opcionales)
 
-## Common Pitfalls
+* 🥇 **Logro 1:** Agregar botón para subir una nueva imagen desde un formulario.
+* 🥈 **Logro 2:** Incluir contador dinámico de tarjetas (ej: “Mostrando 3 tarjetas”).
+* 🥉 **Logro 3:** Filtrar tarjetas por palabra clave usando un campo de búsqueda.
 
-- Forgetting to add spaces after headers
-- Not properly indenting nested lists
-- Mixing different list markers
-- Not escaping special characters when needed
+---
 
-## Tools and Resources
+### 📝 Instrucciones de Entrega
 
-- [Markdown Guide](https://www.markdownguide.org/)
-- [Markdown Cheatsheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)
-- [Dillinger](https://dillinger.io/) - Online Markdown Editor
-- [Markdown Preview](https://markdownlivepreview.com/) - Live Preview Tool
+1. **Publica tu proyecto en GitHub Pages.**
+2. Asegúrate de que el botón y galería funcionen al entrar al sitio.
+3. Entrega:
 
-## Conclusion
+   * URL del repositorio (`https://github.com/tuusuario/miniblog-live`)
+   * URL de la demo en GitHub Pages (`https://tuusuario.github.io/miniblog-live`)
 
-Markdown is a powerful tool for creating well-formatted documents quickly and efficiently. Whether you're writing documentation, taking notes, or creating content for the web, Markdown provides a simple yet effective way to structure your text.
+---
 
-Remember: The best way to learn Markdown is to practice! Try creating your own documents and experiment with different syntax elements. 
+> 💡 **Consejo del profe:** Este laboratorio es perfecto para consolidar la creación de interfaces dinámicas. No copies y pegues el HTML: **constrúyelo con JavaScript.** Verlo tomar forma en tiempo real es el verdadero poder del DOM.
+
+---
